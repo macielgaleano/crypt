@@ -1,0 +1,24 @@
+{
+  "name": "crypt",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/macielgaleano/crypt.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/macielgaleano/crypt/issues"
+  },
+  "homepage": "https://github.com/macielgaleano/crypt#readme",
+  "dependencies": {
+    "crypto-js": "^4.1.1",
+    "fs": "^0.0.1-security",
+    "hybrid-crypto-js": "^0.2.4"
+  }
+}
