@@ -1,6 +1,6 @@
 const fs = require("fs");
 const CryptoJS = require("crypto-js");
-const forge = require("node-forge");
+//const forge = require("node-forge");
 const NodeRSA = require("node-rsa");
 
 const url =
@@ -27,5 +27,5 @@ const generateSignature = CryptoJS.HmacSHA256(payload, secret).toString();
 
 console.log("generateSignature", generateSignature);
 
-const decryptWithPubliKey = key.decrypt(decrypt, "base64");
+const decryptWithPubliKey = key.decryptPublic(decrypt, "hex"); //type Encoding = 'ascii' | 'utf8' | 'utf16le' | 'ucs2' | 'latin1' | 'base64' | 'hex' | 'binary' | 'buffer';
 console.log(decryptWithPubliKey);
