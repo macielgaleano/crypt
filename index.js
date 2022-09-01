@@ -3,15 +3,16 @@ const CryptoJS = require("crypto-js");
 //const forge = require("node-forge");
 const NodeRSA = require("node-rsa");
 const url =
-  "checkout:8000/confirmation/eyJ0ZW5hbnRJZCI6ImVsdGVuYW50LGplIiwgInRyYW5zYWN0aW9uUmVmZXJlbmNlIjoiZWxpZCxqZSJ9.l_9BlRPNHdmtQtgVwfaK-kcVYOfCZvvWvGv211K_kDufaJX8J6oL8bB-b69gZHBgQDgw1uYFAknHG1AM_dCh7ECMzeE2xMrxqb2xnZUqhl1H2xSE3CQg0gpU3bE5mteUwqFXL0KPq0XC-K7X7zSNlN1QItx5j8Km2WlfYX1PnrqDAsnigheeY3o4u2bIALyO_nzhtpY7FFGzO1RXlUpf7IVM2YkeSdhPoJ0gIIyqHQsvWxmsmMHWD4V1K9wD9poibrKSo6coL5vKQJ2spU435z4309WyWClImcZM8MQY4kvDI7CvQci25KIo98VWsrOL9n9_g7uJREuB7bequSBUUQ";
+  "http://checkout:8000/confirmation/eyJ0ZW5hbnRJZCI6IngzNzJzU1liIiwgInRyYW5zYWN0aW9uUmVmZXJlbmNlIjoiMTA5NTgxNSJ9.VpCRLymdNvjzluJJXXMfHo1AVAfIfWrVKtMAgCr7SszLMslzqyFXLum7GnlxVXcOSQdXivVqlolDZa_HW-ZTQIeLTcG4ot8Are1a3Tc69iGrKTXl9LmRQ9rmBIdi6__Zu7hyp2oMchhQELoGOLpGFleJIN5Ur-TQB0uKGU9T7ejCR0fpCL2Q2PAhbqdVqlm_HYXNrf0QO2ytvaBBC80OkAJug4g86QJ4QRjAOxJ9C73p2gdPdjg3FHQFzcVZhZvzom4Q28UvRzlE4LxsBGFlLDJDdzrXRUDfn8JlkQwiu_K2Anqy8m-apOMQLrYdlz8EkbmQ1-N4ArGCmeUY0whT0A";
 const public = fs.readFileSync("./public.pem", { encoding: "utf8" });
 const secret = "jXn2r5u8x/A?D(G+KbPdSgVkYp3s6v9y$B&E)H@McQfThWmZq4t7w!z%C*F-JaNd"; //hmac
 const key = new NodeRSA(public);
-const code = url.replace("checkout:8000/confirmation/", "");
+const code = url.replace("http://checkout:8000/confirmation/", "");
 const parts = code.split(".");
+65;
 const payload = CryptoJS.enc.Utf8.stringify(CryptoJS.enc.Base64url.parse(parts[0]));
 const decrypt = CryptoJS.enc.Base64.stringify(CryptoJS.enc.Base64url.parse(parts[1]));
 const generateSignature = CryptoJS.HmacSHA256(payload, secret).toString();
 const decryptWithPubliKey = key.decryptPublic(decrypt, "hex"); //type Encoding = 'ascii' | 'utf8' | 'utf16le' | 'ucs2' | 'latin1' | 'base64' | 'hex' | 'binary' | 'buffer';
-console.log(payload);
+console.log(JSON.parse(payload));
 if (decryptWithPubliKey === generateSignature) console.log("si");
